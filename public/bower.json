@@ -1,0 +1,22 @@
+{
+  "name": "Esquina Caliente",
+  "homepage": "https://github.com/drenzzo/Esquina-Caliente",
+  "authors": [
+    "David Martin <davidrenzzo@gmail.com>"
+  ],
+  "description": "Test Kambista - Esquina Caliente",
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "fontawesome": "^5.4.1",
+    "angular": "angularjs#^1.7.5"
+  }
+}
