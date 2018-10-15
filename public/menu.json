@@ -1,11 +1,11 @@
 {
 	"menu": [
 		{
-			"item": "Cafe americano"
+			"item": "Café americano"
 			, "price": 5
 		},
 		{
-			"item": "Cafe con leche"
+			"item": "Café con leche"
 			, "price": 7
 		},
 		{

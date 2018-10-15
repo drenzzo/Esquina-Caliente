@@ -2,7 +2,7 @@
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" ng-app="esquinaApp"> <!--<![endif]-->
     <head>
         
         <!-- Global Metas -->
@@ -34,8 +34,7 @@
 				<!-- angularjs -->
 				<script src="bower_components/angular/angular.min.js"></script>
 
-				<!-- constants -->
-				<script src="js/constants.js"></script>
+				<script src="js/app.js"></script>
 
 
         <!-- Favicons -->
@@ -45,12 +44,84 @@
         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
  
     </head>
-    <body ng-app="esquina">
-        <div class="container-fluid">
-        	<h1>Esquina Caliente - Pedidos</h1>
+    <body>
+        <div class="container-fluid" ng-controller="menuCtrl">
+        	<h1>Esquina Caliente</h1>
         	<div class="row">
-					  <div class="col-md-8"> .col-md-8</div>
-					  <div class="col-md-4"> .col-md-4</div>
+        		<div class="col-md-12">
+        			<div class="form-group">
+	        			<input 
+	        			class="form-control"
+	        			placeholder="Nombre del cliente"
+	        			type="text" 
+	        			name="nCliente"
+	        			ng-model="frm.mCliente"
+	        			/>
+        			</div>
+        			<h3>{{frm.mCliente}}</h3>
+        		</div>
+        		<div class="col-md-4">
+        			<h5 class="text-center">Menu</h5>
+        			<ul class="list-group">
+        				<li class="list-group-item" ng-repeat="item in menu">
+        					<a href=""
+        					class="btn btn-primary btn-block"
+        					role="button"
+        					ng-click="fnAddItem(item)">
+	        					<strong>{{item.description}}</strong>
+	        					<br><span>Precio: {{item.price}}</span>        						
+        					</a>
+        				</li>
+        			</ul>
+        		</div>
+					  <div class="col-md-8">
+					  	<h5 class="text-center">Pedido</h5>
+					  	<div class="row">
+					  		<ul class="list-group col-md-12">
+					  			<li class="list-group-item" ng-repeat="item in pedido track by $index">
+					  				<div class="row">
+					  					<span class="col-md-2 text-left">
+					  						<a href=""
+					  						class="btn btn-secondary"
+					  						ng-click="fnDelItem($index, item)"
+					  						> Quitar 
+					  						</a>
+					  					</span>
+						  				<span class="col-md-8 text-right">{{item.description}}
+						  				</span>
+						  				<span class="col-md-2 text-right">{{item.price | currency}}</span>
+					  				</div>
+					  			</li>			
+					  		</ul>
+					  	</div>
+					  	<div class="row" ng-if="pedido.length > 0">
+					  		<div class="col-md-12 text-right">
+					  			<h2>
+					  				TOTAL: 
+					  				<span class="badge badge-info">{{totalPedido | currency}}</span>
+					  			</h2>
+					  		</div>
+					  	</div>
+					  </div>
+					  <hr>
+					  <hr>
+					  	<div class="col-md-6">
+						  	<button 
+						  	class="btn btn-success btn-lg btn-block"
+						  	name="nEnviar"
+						  	ng-model="frm.mEnviar"
+						  	ng-click="fnEnviar()"
+						  	>Enviar pedido</button>
+					  	</div>
+					  	<div class="col-md-6">
+						  	<button 
+						  	class="btn btn-lg btn-block"
+						  	name="nCancelar"
+						  	ng-model="frm.mCancelar"
+						  	ng-click="fnCancelar()"
+						  	>Cancelar</button>
+					  	</div>
+
 					</div>
         </div>
     </body>
