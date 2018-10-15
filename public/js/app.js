@@ -17,11 +17,13 @@ app.controller('menuCtrl', function($scope){
 
 	$scope.fnDelItem = _fnDelItem;
 	function _fnDelItem(index, item){
-		// var index = $scope.pedido.indexOf(item.description);
-		// if (index > -1) {
-  		$scope.pedido.splice(index, 1);
-  		$scope.totalPedido = $scope.totalPedido - item.price
-		// }
+		$scope.pedido.splice(index, 1);
+		$scope.totalPedido = $scope.totalPedido - item.price
+	}
+
+	$scope.fnReady = _fnReady;
+	function _fnReady(index){
+		$scope.envios.splice(index, 1);
 	}
 
 	function sumaTotalPedido(price){

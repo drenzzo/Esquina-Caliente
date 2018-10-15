@@ -103,25 +103,27 @@
 					  		</div>
 					  	</div>
 					  </div>
-					  <br>
-					  <br>
-					  	<div class="col-md-6">
-						  	<button 
-						  	class="btn btn-success btn-lg btn-block"
-						  	name="nEnviar"
-						  	ng-click="fnEnviar()"
-						  	>Enviar pedido</button>
-					  	</div>
-					  	<div class="col-md-6">
-						  	<button 
-						  	class="btn btn-lg btn-block"
-						  	name="nCancelar"
-						  	ng-click="fnCancelar()"
-						  	>Cancelar</button>
-					  	</div>
+
+						<div class="col-md-12">&nbsp;</div>
+						<div class="col-md-12">&nbsp;</div>
+				  	<div class="col-md-6">
+					  	<button 
+					  	class="btn btn-success btn-lg btn-block"
+					  	name="nEnviar"
+					  	ng-click="fnEnviar()"
+					  	>Enviar pedido</button>
+				  	</div>
+				  	<div class="col-md-6">
+					  	<button 
+					  	class="btn btn-lg btn-block"
+					  	name="nCancelar"
+					  	ng-click="fnCancelar()"
+					  	>Cancelar</button>
+				  	</div>
 
 					</div>
-
+					<div class="col-md-12">&nbsp;</div>
+					<div class="col-md-12">&nbsp;</div>
 					<div class="row" ng-show="envios.length > 0">
 						<div class="col-md-12 text-center">
 							<h4>Pedidos Pendientes <span class="badge badge-primary badge-pill">{{envios.length}}</span></h4>
@@ -146,13 +148,8 @@
 										<td>
 											<a href=""
 											class="btn btn-success"
-											ng-click="fnReady(item)"
+											ng-click="fnReady($index)"
 											>Listo</a>
-											<a href=""
-											class="btn btn-secondary"
-											ng-click="fnCancel(item)"
-											>Anular</a>
-
 										</td>
 									</tr>
 								</tbody>
