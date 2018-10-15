@@ -58,7 +58,7 @@
 	        			ng-model="frm.mCliente"
 	        			/>
         			</div>
-        			<h3>{{frm.mCliente}}</h3>
+        			<h3 ng-show="frm.mCliente != undefined">Cliente: {{frm.mCliente}}</h3>
         		</div>
         		<div class="col-md-4">
         			<h5 class="text-center">Menu</h5>
@@ -69,7 +69,7 @@
         					role="button"
         					ng-click="fnAddItem(item)">
 	        					<strong>{{item.description}}</strong>
-	        					<br><span>Precio: {{item.price}}</span>        						
+	        					<br><span>Precio: {{item.price | currency}}</span>        						
         					</a>
         				</li>
         			</ul>
@@ -103,13 +103,12 @@
 					  		</div>
 					  	</div>
 					  </div>
-					  <hr>
-					  <hr>
+					  <br>
+					  <br>
 					  	<div class="col-md-6">
 						  	<button 
 						  	class="btn btn-success btn-lg btn-block"
 						  	name="nEnviar"
-						  	ng-model="frm.mEnviar"
 						  	ng-click="fnEnviar()"
 						  	>Enviar pedido</button>
 					  	</div>
@@ -117,12 +116,50 @@
 						  	<button 
 						  	class="btn btn-lg btn-block"
 						  	name="nCancelar"
-						  	ng-model="frm.mCancelar"
 						  	ng-click="fnCancelar()"
 						  	>Cancelar</button>
 					  	</div>
 
 					</div>
+
+					<div class="row" ng-show="envios.length > 0">
+						<div class="col-md-12 text-center">
+							<h4>Pedidos Pendientes <span class="badge badge-primary badge-pill">{{envios.length}}</span></h4>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Cliente</th>
+										<th>Pedido</th>
+										<th>Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in envios">
+										<td>{{item.cliente | uppercase}}</td>
+										<td>
+											<ul>
+												<li ng-repeat="p in item.pedido track by $index">
+													{{p.description}}
+												</li>
+											</ul>
+										</td>
+										<td>
+											<a href=""
+											class="btn btn-success"
+											ng-click="fnReady(item)"
+											>Listo</a>
+											<a href=""
+											class="btn btn-secondary"
+											ng-click="fnCancel(item)"
+											>Anular</a>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
         </div>
     </body>
 </html>

@@ -6,12 +6,13 @@ app.controller('menuCtrl', function($scope){
 
 	$scope.pedido = [];
 	$scope.totalPedido = 0;
+	$scope.frm = {}
+	$scope.envios = []
 
 	$scope.fnAddItem = _fnAddItem;
 	function _fnAddItem(item){
 		$scope.pedido.push(item)
 		sumaTotalPedido(item.price);
-		console.log($scope.pedido)
 	}
 
 	$scope.fnDelItem = _fnDelItem;
@@ -29,12 +30,29 @@ app.controller('menuCtrl', function($scope){
 
 	$scope.fnEnviar = _fnEnviar;
 	function _fnEnviar(){
-		return true;
+		if(angular.isUndefined($scope.frm.mCliente)){
+			alert("Debe ingresar el nombre del cliente")
+		}else{
+			if($scope.pedido.length == 0)
+				alert("Debe elegir por lo menos un item antes de enviar")
+			else{
+				var envio = {
+					"cliente": $scope.frm.mCliente
+					, "pedido": $scope.pedido 
+				}
+				$scope.envios.push(envio)
+				console.log($scope.envios)
+				_fnCancelar();
+		
+			}
+		}
 	}
 
 	$scope.fnCancelar = _fnCancelar;
 	function _fnCancelar(){
-
+		$scope.frm.mCliente = undefined;
+		$scope.pedido = []
+		$scope.totalPedido = 0;	
 	}
 
 });
